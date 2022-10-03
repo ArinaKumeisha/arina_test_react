@@ -22,7 +22,12 @@ function App() {
       description: 'смешная картинка, посмотри и посмейся, тебе дожно понравится!',
       img: feature
     },
-    {id: 3, description: 'волк воет на луну, и он очень злой и опасный!', img: wolf},
+    {
+      id: 3,
+      description: 'смешная картинка, посмотри и посмейся, тебе дожно понравится!',
+      img: feature
+    },
+    {id: 4, description: 'волк воет на луну, и он очень злой и опасный!', img: wolf},
   ])
 
   const handler = (inputId: number) => {
@@ -30,50 +35,55 @@ function App() {
   }
 
   const showPrevImage = (id: number) => {
-    let current = 0;
-    if(id){
-      current = id-1;
-    }else {
-      current = state.length - 1
-    }
-      setActive(current)
-
+    setActive((current) => {
+        let newValue;
+        if (current > 1) {
+          newValue = current - 1;
+        } else {
+          newValue = state.length;
+        }
+        return newValue;
+      }
+    )
   }
 
 
   const showNextImage = () => {
-    setActive(active + 1)
+    setActive((current) => {
+      return current === state.length ? 1 : current + 1;
+
+    })
   }
   return (
     <div className={style.container}>
       <div className={style.block}>
-        <div className={style.textBlock}>
-          {state.map(el => (
-              <div onClick={() => handler(el.id)}
-                   className={active === el.id ? `${style.active} ${style.text}` : style.text}>{el.description}</div>
-            )
-          )}
-        </div>
-        <div className={style.imagesBlock}>
-          {state.map(el => (
-            active === el.id ?
-              <>
-                <h3>{el.id} / {state.length}</h3>
-                <div className={style.image}>
-                  <img src={el.img} alt='' className={style.img}/>
-                  <div
-                    className={`${style.arrow} ${style.arrowLeft}`}
-                    onClick={()=>showPrevImage(el.id)}>
-                  </div>
-                  <div
-                    className={`${style.arrow} ${style.arrowRight}`}
-                    onClick={() => showNextImage()}>
-                  </div>
+        {state.map(el => (
+            <div key={el.id}>
+              <div className={style.textBlock}>
+                <div onClick={() => handler(el.id)}
+                     className={active === el.id ? `${style.active} ${style.text}` : style.text}>{el.description}
                 </div>
-              </> : ''
-          ))}
-        </div>
-      </div>
+              </div>
+
+              {active === el.id &&
+                <div className={style.imagesBlock}>
+                  <h3>{el.id} / {state.length}</h3>
+                  <div className={style.image}>
+                    <img src={el.img} alt='' className={style.img}/>
+                    <div
+                      className={`${style.arrow} ${style.arrowLeft}`}
+                      onClick={() => showPrevImage(el.id)}>
+                    </div>
+                    <div
+                      className={`${style.arrow} ${style.arrowRight}`}
+                      onClick={showNextImage}>
+                    </div>
+                  </div>
+                </div>}
+            </div>
+          )
+        )} </div>
+
     </div>
   );
 }

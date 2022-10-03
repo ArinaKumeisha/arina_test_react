@@ -1,19 +1,21 @@
 .container {
-    background-color: violet;
+    background-color: #415673;
     height: 100vh;
-    display: flex;
     justify-content: center;
+    box-sizing: border-box;
 }
 
 .block {
     display: flex;
+    flex-direction: column;
     width: 70%;
-    justify-content: space-around;
-    align-items: center;
+    position: relative;
 }
 
 .imagesBlock {
-    width: 35%;
+    position: absolute;
+    right: 10px;
+    top: 10px;
 }
 
 .text {
@@ -24,14 +26,17 @@
 .active {
     color: white;
 }
-.image{
+
+.image {
     position: relative;
     width: 200px;
 }
-.img{
+
+.img {
     width: 100%;
 }
-.arrow{
+
+.arrow {
     border: solid black;
     border-width: 0 3px 3px 0;
     display: inline-block;
@@ -40,16 +45,18 @@
     bottom: 10px;
 }
 
-.arrowLeft{
+.arrowLeft {
     transform: rotate(135deg);
     left: 5px;
 
 }
+
 .arrowRight {
     transform: rotate(-45deg);
     right: 5px;
 }
-.disabled{
+
+.disabled {
     pointer-events: none;
     opacity: 0.4;
 }
