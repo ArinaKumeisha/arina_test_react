@@ -1,0 +1,55 @@
+.container {
+    background-color: violet;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.block {
+    display: flex;
+    width: 70%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.imagesBlock {
+    width: 35%;
+}
+
+.text {
+    width: 300px;
+    margin: 30px;
+}
+
+.active {
+    color: white;
+}
+.image{
+    position: relative;
+    width: 200px;
+}
+.img{
+    width: 100%;
+}
+.arrow{
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    position: absolute;
+    bottom: 10px;
+}
+
+.arrowLeft{
+    transform: rotate(135deg);
+    left: 5px;
+
+}
+.arrowRight {
+    transform: rotate(-45deg);
+    right: 5px;
+}
+.disabled{
+    pointer-events: none;
+    opacity: 0.4;
+}
